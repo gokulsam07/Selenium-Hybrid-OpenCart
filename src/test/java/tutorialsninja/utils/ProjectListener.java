@@ -60,7 +60,7 @@ public class ProjectListener implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		report.flush();
-		File open = new File("C:\\OpenCart\\tutorialsninja\\Reports\\report.html");
+		File open = new File("F:\\Data\\Reports\\report.html");
 		try {
 			Desktop.getDesktop().browse(open.toURI());
 		} catch (IOException e) {

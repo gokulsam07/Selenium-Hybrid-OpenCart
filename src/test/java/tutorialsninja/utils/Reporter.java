@@ -12,7 +12,7 @@ public class Reporter {
 
 	public static ExtentReports generateReport() {
 		ExtentReports report = new ExtentReports();
-		File reportFile = new File("C:\\OpenCart\\tutorialsninja\\Reports\\report.html");
+		File reportFile = new File("F:\\Data\\Reports\\report.html");
 		ExtentSparkReporter spark = new ExtentSparkReporter(reportFile);
 		spark.config().setTheme(Theme.DARK);
 		spark.config().setReportName("Tutorials Ninja Test Automation Report");
@@ -22,7 +22,7 @@ public class Reporter {
 
 		Properties prop = new Properties();
 		try {
-			File propFile = new File("C:\\OpenCart\\tutorialsninja\\src\\test\\java\\browser\\setup\\config.properties");
+			File propFile = new File("F:\\Selenium-Hybrid-OpenCart\\src\\test\\java\\browser\\setup\\config.properties");
 			FileInputStream fis = new FileInputStream(propFile);
 			prop.load(fis);
 		} catch (Exception e) {

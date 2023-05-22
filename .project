@@ -24,7 +24,7 @@
 		<link>
 			<name>src/test/java/testdata/opencartTestData.xlsx</name>
 			<type>1</type>
-			<location>C:/Data/opencartTestData.xlsx</location>
+			<location>F:/Data/opencartTestData.xlsx</location>
 		</link>
 	</linkedResources>
 </projectDescription>

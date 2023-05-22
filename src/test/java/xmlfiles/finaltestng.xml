@@ -6,10 +6,9 @@
 	</listeners>
 	<test name="OpenCartTest">
 		<classes>
-			<class name="com.tutorialsninja.tests.RegisterTest" />
+	    	<class name="com.tutorialsninja.tests.RegisterTest" /> 
 			<class name="com.tutorialsninja.tests.LoginTest" />
 			<class name="com.tutorialsninja.tests.SearchProduct" />
-
 		</classes>
 	</test>
 </suite> 

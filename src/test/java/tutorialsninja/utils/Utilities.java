@@ -33,7 +33,7 @@ public class Utilities {
 	// For data provider using POI
 
 	public static Object[][] readExcel() throws IOException {
-		FileInputStream fs = new FileInputStream("C:\\Data\\opencartTestData.xlsx");
+		FileInputStream fs = new FileInputStream("F:\\Data\\opencartTestData.xlsx");
 		workbook = new XSSFWorkbook(fs);
 		XSSFSheet sheet = workbook.getSheet("credentials");
 
@@ -73,7 +73,7 @@ public class Utilities {
 
 
 		File shoot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String destination = ("C:\\Data\\Screenshot"+testName+".png");
+		String destination = ("F:\\Data\\Screenshot"+testName+".png");
 		try {
 			FileHandler.copy(shoot, new File(destination));
 		} catch (IOException e) {
