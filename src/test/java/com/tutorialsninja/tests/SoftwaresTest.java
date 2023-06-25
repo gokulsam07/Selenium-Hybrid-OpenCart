@@ -1,8 +1,7 @@
 package com.tutorialsninja.tests;
 
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,17 +9,16 @@ import com.tutorialsninja.pageobjects.CategoryRibbon.CategoryRibbon;
 import com.tutorialsninja.pageobjects.IndividualCategoryPages.SoftwarePage;
 
 
-import browser.setup.InitializeBrowserAndOpenWebsite;
+import browser.setup.BaseTest;
 
-public class SoftwaresTest extends InitializeBrowserAndOpenWebsite {
-	public WebDriver driver;
+public class SoftwaresTest extends BaseTest {
+
 	SoftwarePage softwaresPage;
 	
 
 	@BeforeMethod
 	public void setup() {
-		driver =setupBrowser(loadProperties().getProperty("browserName"));
-		CategoryRibbon catRib = new CategoryRibbon(driver);
+		CategoryRibbon catRib = new CategoryRibbon(getDriver());
 		 softwaresPage = catRib.selectSoftwares();
 
 	}
@@ -35,8 +33,5 @@ public class SoftwaresTest extends InitializeBrowserAndOpenWebsite {
 		Assert.assertEquals(true, softwaresPage.IsDisplayValueEqualsActualCount());
 	}
 
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
+
 }

@@ -2,9 +2,7 @@ package com.tutorialsninja.tests;
 
 
 import java.io.IOException;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,20 +11,21 @@ import com.tutorialsninja.pageobjects.AccountPage;
 import com.tutorialsninja.pageobjects.HomePage;
 import com.tutorialsninja.pageobjects.LoginPage;
 
-import browser.setup.InitializeBrowserAndOpenWebsite;
+import browser.setup.BaseTest;
+import browser.setup.ConfigReader;
 import tutorialsninja.utils.Utilities;
 
-public class LoginTest extends InitializeBrowserAndOpenWebsite {
+public class LoginTest extends BaseTest {
 
-	public WebDriver driver;
+
 	private LoginPage loginPage;
 	private HomePage homePage;
 	private AccountPage accountPage;
 
 	@BeforeMethod
 	public void setUp() {
-		driver =setupBrowser(loadProperties().getProperty("browserName"));
-		homePage = new HomePage(driver);
+		super.setUp();
+		homePage = new HomePage(getDriver());
 		homePage.ClickOnMyAccount();
 		loginPage= homePage.ClickOnLogin();
 	}
@@ -37,7 +36,7 @@ public class LoginTest extends InitializeBrowserAndOpenWebsite {
 		loginPage.enterUsername(username);
 		loginPage.enterPassword(password);
 		loginPage.clickLogin();
-		AccountPage accountPage = new AccountPage(driver);
+		AccountPage accountPage = new AccountPage(getDriver());
 
 		if(accountPage.getDisplayOfEditAccInfo()) {
 			Assert.assertTrue(true,"Logged in");
@@ -61,25 +60,21 @@ public class LoginTest extends InitializeBrowserAndOpenWebsite {
 
 	@Test(priority=4)
 	public void ribbonMyAccountOptions() {
-		loginPage.enterUsername(loadProperties().getProperty("username"));
-		loginPage.enterPassword(loadProperties().getProperty("password"));
+		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
+		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
 		accountPage =loginPage.clickLogin();
 		Assert.assertEquals(true, accountPage.IsAllAccountOptionsDisplayed());	
 	}
 
 	@Test(priority=5,enabled=true)
 	public void logOut() {
-		loginPage.enterUsername(loadProperties().getProperty("username"));
-		loginPage.enterPassword(loadProperties().getProperty("password"));
+		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
+		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
 		accountPage =loginPage.clickLogin();
 		Assert.assertEquals(true, accountPage.clickLogout());	
 	}
 
 
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
 
 	@DataProvider(name="loginData")
 	public  Object[][] callPOI() throws IOException{

@@ -1,8 +1,6 @@
 package com.tutorialsninja.tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -13,10 +11,11 @@ import com.tutorialsninja.pageobjects.accountsPageObjects.ChangePasswordPage;
 import com.tutorialsninja.pageobjects.accountsPageObjects.EditAccInfoPage;
 import com.tutorialsninja.pageobjects.accountsPageObjects.NewsLetterPage;
 
-import browser.setup.InitializeBrowserAndOpenWebsite;
+import browser.setup.BaseTest;
+import browser.setup.ConfigReader;
 
-public class AccountsTest extends InitializeBrowserAndOpenWebsite {
-	public WebDriver driver;
+public class AccountsTest extends BaseTest {
+
 	private AccountPage accountPage;
 	private LoginPage loginPage;
 	private NewsLetterPage newsLetterPage;
@@ -26,13 +25,12 @@ public class AccountsTest extends InitializeBrowserAndOpenWebsite {
 
 	@BeforeMethod
 	public void setUp() {
-		driver =setupBrowser(loadProperties().getProperty("browserName"));
-
-		HomePage homePage = new HomePage(driver);
+		super.setUp();
+		HomePage homePage = new HomePage(getDriver());
 		homePage.ClickOnMyAccount();
 		loginPage = homePage.ClickOnLogin();
-		loginPage.enterUsername(loadProperties().getProperty("username"));
-		loginPage.enterPassword(loadProperties().getProperty("password"));
+		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
+		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
 		accountPage = loginPage.clickLogin();
 	}
 
@@ -78,10 +76,5 @@ public class AccountsTest extends InitializeBrowserAndOpenWebsite {
 	public void notMatchingPwd(){
 		changePasswordPage = accountPage.clickChangepassword();
 		Assert.assertEquals("Password confirmation does not match password!",  changePasswordPage.notMatchingPwd());
-	}
-
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
 	}
 }

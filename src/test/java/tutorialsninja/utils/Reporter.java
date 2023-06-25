@@ -11,6 +11,8 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 public class Reporter {
 
 	public static ExtentReports generateReport() {
+		
+		
 		ExtentReports report = new ExtentReports();
 		File reportFile = new File("F:\\Data\\Reports\\report.html");
 		ExtentSparkReporter spark = new ExtentSparkReporter(reportFile);

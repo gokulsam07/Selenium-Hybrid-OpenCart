@@ -1,8 +1,5 @@
 package com.tutorialsninja.tests;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,10 +7,10 @@ import com.tutorialsninja.pageobjects.HomePage;
 import com.tutorialsninja.pageobjects.LoginPage;
 import com.tutorialsninja.pageobjects.ShoppingcartPage;
 
-import browser.setup.InitializeBrowserAndOpenWebsite;
+import browser.setup.BaseTest;
 
-public class TopRibbonTest extends InitializeBrowserAndOpenWebsite {
-	public WebDriver driver;
+public class TopRibbonTest extends BaseTest {
+
 	private ShoppingcartPage shoppingCartPage;
 	private HomePage homePage ;
 	private LoginPage loginPage;
@@ -22,8 +19,8 @@ public class TopRibbonTest extends InitializeBrowserAndOpenWebsite {
 
 	@BeforeMethod
 	public void setUp() {
-		driver =setupBrowser(loadProperties().getProperty("browserName"));
-		homePage = new HomePage(driver);
+		super.setUp();
+		homePage = new HomePage(getDriver());
 	}
 
 
@@ -52,8 +49,4 @@ public class TopRibbonTest extends InitializeBrowserAndOpenWebsite {
 		Assert.assertEquals(true, homePage.clickBtnCart());
 	}
 
-	@AfterMethod
-	public void tearDown() {
-		driver.quit();
-	}
 }
