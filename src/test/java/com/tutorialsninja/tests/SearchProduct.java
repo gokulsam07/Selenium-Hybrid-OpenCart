@@ -32,7 +32,7 @@ public class SearchProduct extends BaseTest{
 	public void searchInvalid() {
 		HomePage homePage = new HomePage(getDriver());
 		StorePage storePage = new StorePage(getDriver());
-		homePage.EnterProductName(ConfigReader.loadDataProperties().getProperty("product"));
+		homePage.EnterProductName(new ConfigReader().loadDataProperties().getProperty("product"));
 		homePage.clickSearchButton();
 		Assert.assertTrue(storePage.noProductAvailableIsDisplayed(), "No product available");
 	}

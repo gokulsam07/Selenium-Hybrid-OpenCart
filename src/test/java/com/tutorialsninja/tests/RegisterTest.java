@@ -24,15 +24,15 @@ public class RegisterTest extends BaseTest {
 	@Test(priority=1)
 	public void RegisterWithMandatoryFields() {
 		RegisterPage registerPage = new RegisterPage(getDriver());
-		registerPage.enterFirstName(ConfigReader.loadDataProperties().getProperty("firstName"));
-		registerPage.enterLastName(ConfigReader.loadDataProperties().getProperty("lastName"));
+		registerPage.enterFirstName(new ConfigReader().loadDataProperties().getProperty("firstName"));
+		registerPage.enterLastName(new ConfigReader().loadDataProperties().getProperty("lastName"));
 		registerPage.enterEmail(Utilities.generateTimeStamp());
-		registerPage.enterTelephone(ConfigReader.loadDataProperties().getProperty("telephone"));
-		registerPage.enterPassword(ConfigReader.loadDataProperties().getProperty("password"));
-		registerPage.confirmPassword(ConfigReader.loadDataProperties().getProperty("password"));
+		registerPage.enterTelephone(new ConfigReader().loadDataProperties().getProperty("telephone"));
+		registerPage.enterPassword(new ConfigReader().loadDataProperties().getProperty("password"));
+		registerPage.confirmPassword(new ConfigReader().loadDataProperties().getProperty("password"));
 		registerPage.agreePolicy();
 		registerPage.save();
-		Assert.assertEquals(registerPage.confirmationMessageIsDisplayed(), ConfigReader.loadDataProperties().getProperty("accountCreatedMessage"));
+		Assert.assertEquals(registerPage.confirmationMessageIsDisplayed(), new ConfigReader().loadDataProperties().getProperty("accountCreatedMessage"));
 
 
 	}
@@ -41,15 +41,15 @@ public class RegisterTest extends BaseTest {
 	public void RegisterWithPreRegisteredEmail() {
 
 		RegisterPage registerPage = new RegisterPage(getDriver());
-		registerPage.enterFirstName(ConfigReader.loadDataProperties().getProperty("firstName"));
-		registerPage.enterLastName(ConfigReader.loadDataProperties().getProperty("lastName"));
-		registerPage.enterEmail(ConfigReader.loadProperties().getProperty("username"));
-		registerPage.enterTelephone(ConfigReader.loadDataProperties().getProperty("telephone"));
-		registerPage.enterPassword(ConfigReader.loadDataProperties().getProperty("password"));
-		registerPage.confirmPassword(ConfigReader.loadDataProperties().getProperty("password"));
+		registerPage.enterFirstName(new ConfigReader().loadDataProperties().getProperty("firstName"));
+		registerPage.enterLastName(new ConfigReader().loadDataProperties().getProperty("lastName"));
+		registerPage.enterEmail(new ConfigReader().loadProperties().getProperty("username"));
+		registerPage.enterTelephone(new ConfigReader().loadDataProperties().getProperty("telephone"));
+		registerPage.enterPassword(new ConfigReader().loadDataProperties().getProperty("password"));
+		registerPage.confirmPassword(new ConfigReader().loadDataProperties().getProperty("password"));
 		registerPage.agreePolicy();
 		registerPage.save();
-		Assert.assertEquals(registerPage.isErrorDisplayedForPreConfiguredMail(), ConfigReader.loadDataProperties().getProperty("emailPreConfigured"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForPreConfiguredMail(), new ConfigReader().loadDataProperties().getProperty("emailPreConfigured"));
 
 
 	}
@@ -59,11 +59,11 @@ public class RegisterTest extends BaseTest {
 		RegisterPage registerPage = new RegisterPage(getDriver());
 		registerPage.save();
 
-		Assert.assertEquals(registerPage.isErrorDisplayedForfirstName(), ConfigReader.loadDataProperties().getProperty("fnError"));
-		Assert.assertEquals(registerPage.isErrorDisplayedForlastName(), ConfigReader.loadDataProperties().getProperty("lnError"));
-		Assert.assertEquals(registerPage.isErrorDisplayedForEmail(), ConfigReader.loadDataProperties().getProperty("eError"));
-		Assert.assertEquals(registerPage.isErrorDisplayedFortelephone(), ConfigReader.loadDataProperties().getProperty("tError"));
-		Assert.assertEquals(registerPage.isErrorDisplayedForpassword(), ConfigReader.loadDataProperties().getProperty("pasError"));
-		Assert.assertEquals(registerPage.isErrorDisplayedForpolicy(), ConfigReader.loadDataProperties().getProperty("policyError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForfirstName(), new ConfigReader().loadDataProperties().getProperty("fnError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForlastName(), new ConfigReader().loadDataProperties().getProperty("lnError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForEmail(), new ConfigReader().loadDataProperties().getProperty("eError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedFortelephone(), new ConfigReader().loadDataProperties().getProperty("tError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForpassword(), new ConfigReader().loadDataProperties().getProperty("pasError"));
+		Assert.assertEquals(registerPage.isErrorDisplayedForpolicy(), new ConfigReader().loadDataProperties().getProperty("policyError"));
 	}
 }

@@ -24,20 +24,20 @@ public class Laptops_NotebooksTest extends BaseTest {
 
 	@Test(priority=1,enabled=true)
 	public void macTest() {
-		homePage = catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(ConfigReader.loadDataProperties().getProperty("nb1")).clickOnContinue();
+		homePage = catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(new ConfigReader().loadDataProperties().getProperty("nb1")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 
 	}
 
 	@Test(priority=2,enabled=true)
 	public void windowsTest() {
-		homePage = catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(ConfigReader.loadDataProperties().getProperty("nb2")).clickOnContinue();
+		homePage = catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(new ConfigReader().loadDataProperties().getProperty("nb2")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 	}
 
 	@Test(priority=3,enabled=true)
 	public void checkIfLap_NotebookPageIsDisplayed() {
-		StorePage allNotebooks =(StorePage) catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(ConfigReader.loadDataProperties().getProperty("nb3"));
+		StorePage allNotebooks =(StorePage) catRib.selectLaptopAndNoteBook().selectlaptopOrNotebookType(new ConfigReader().loadDataProperties().getProperty("nb3"));
 		Assert.assertEquals(true, allNotebooks.isAllLaptopsNotebboksDisplayed());
 	}
 

@@ -26,9 +26,9 @@ public class LoginTest extends BaseTest {
 	}
 
 	@Test
-	public void TestLogin() {
-		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
-		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
+	public void testLogin() {
+		loginPage.enterUsername(new ConfigReader().loadProperties().getProperty("username"));
+		loginPage.enterPassword(new ConfigReader().loadProperties().getProperty("password"));
 		loginPage.clickLogin();
 		AccountPage accountPage = new AccountPage(getDriver());
 
@@ -52,16 +52,16 @@ public class LoginTest extends BaseTest {
 
 	@Test
 	public void ribbonMyAccountOptions() {
-		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
-		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
+		loginPage.enterUsername(new ConfigReader().loadProperties().getProperty("username"));
+		loginPage.enterPassword(new ConfigReader().loadProperties().getProperty("password"));
 		accountPage = loginPage.clickLogin();
 		Assert.assertEquals(true, accountPage.IsAllAccountOptionsDisplayed());
 	}
 
 	@Test
 	public void logOut() {
-		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
-		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
+		loginPage.enterUsername(new ConfigReader().loadProperties().getProperty("username"));
+		loginPage.enterPassword(new ConfigReader().loadProperties().getProperty("password"));
 		accountPage = loginPage.clickLogin();
 		Assert.assertEquals(true, accountPage.clickLogout());
 	}

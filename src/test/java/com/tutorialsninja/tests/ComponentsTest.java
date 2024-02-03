@@ -25,35 +25,35 @@ public class ComponentsTest extends BaseTest {
 
 	@Test(priority=1)
 	public void miceTest() {
-	 homePage = catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c1")).clickOnContinue();
+	 homePage = catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c1")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 
 	}
 
 	@Test(priority=2)
 	public void monitorTest() {
-		Assert.assertEquals(true, catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c2")).isProductDisplayed(ConfigReader.loadDataProperties().getProperty("apple")));
+		Assert.assertEquals(true, catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c2")).isProductDisplayed(new ConfigReader().loadDataProperties().getProperty("apple")));
 	}
 	@Test(priority=3)
 	public void printerTest() {
-		 homePage =catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c4")).clickOnContinue();
+		 homePage =catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c4")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 	}
 
 	@Test(priority=4)
 	public void scannerTest() {
-		 homePage =catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c4")).clickOnContinue();
+		 homePage =catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c4")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 	}
 	@Test(priority=5)
 	public void webCameraTest() {
-		 homePage =catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c5")).clickOnContinue();
+		 homePage =catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c5")).clickOnContinue();
 		Assert.assertEquals(true, homePage.isSliderVisible());
 	}
 
 	@Test(priority=6)
 	public void checkIfAllComponentsIsDisplayed() {
-		StorePage allComponents =(StorePage) catRib.selectComponents().selectComponentType(ConfigReader.loadDataProperties().getProperty("c6"));
+		StorePage allComponents =(StorePage) catRib.selectComponents().selectComponentType(new ConfigReader().loadDataProperties().getProperty("c6"));
 		Assert.assertEquals(true, allComponents.isAllComponentsDisplayed());
 	}
 }

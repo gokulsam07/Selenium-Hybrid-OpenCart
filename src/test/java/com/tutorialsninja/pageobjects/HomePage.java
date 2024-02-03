@@ -66,12 +66,9 @@ public class HomePage {
 	private WebElement poundIcon;
 
 
-
-
 	public HomePage(WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
-		//PageFactory.initElements(driver, HomePage.class); //means the same thing
 	}
 
 

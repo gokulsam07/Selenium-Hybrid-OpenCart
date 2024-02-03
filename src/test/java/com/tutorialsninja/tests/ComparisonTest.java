@@ -20,14 +20,14 @@ public class ComparisonTest extends BaseTest {
 
 	@Test(priority=1,enabled=true)
 	public void checkEmptyProductComparisonPage() {
-		driver.get().get(ConfigReader.loadDataProperties().getProperty("pdtCmpURL"));
+		driver.get().get(new ConfigReader().loadDataProperties().getProperty("pdtCmpURL"));
 		ProductComparisonPage cmpPage = new ProductComparisonPage(getDriver());
-		Assert.assertEquals(true, cmpPage.emptyPdtPageElementIsDisplayed(ConfigReader.loadDataProperties().getProperty("noPdt")));
+		Assert.assertEquals(true, cmpPage.emptyPdtPageElementIsDisplayed(new ConfigReader().loadDataProperties().getProperty("noPdt")));
 	}
 
 	@Test(priority=2,enabled=true)
 	public void checkAfterAddingProductsToCmpPage() throws InterruptedException {
-		driver.get().get(ConfigReader.loadDataProperties().getProperty("pdtCmpURL"));
+		driver.get().get(new ConfigReader().loadDataProperties().getProperty("pdtCmpURL"));
 		ProductComparisonPage cmpPage = new ProductComparisonPage(getDriver());
 		cmpPage.startComparison();
 		cmpPage.addToCmpPageAndRedirectToCmpPage();	
@@ -36,12 +36,12 @@ public class ComparisonTest extends BaseTest {
 
 	@Test(priority=3,enabled=true)
 	public void addAndRemoveFromComparePageVeification() throws InterruptedException {
-		driver.get().get(ConfigReader.loadDataProperties().getProperty("pdtCmpURL"));
+		driver.get().get(new ConfigReader().loadDataProperties().getProperty("pdtCmpURL"));
 		ProductComparisonPage cmpPage = new ProductComparisonPage(getDriver());
 		cmpPage.startComparison();
 		cmpPage.addToCmpPageAndRedirectToCmpPage();	
 		cmpPage.goToPdtComparisonPageAfterAddAndRemove();
-		Assert.assertEquals(true, cmpPage.emptyPdtPageElementIsDisplayed(ConfigReader.loadDataProperties().getProperty("noPdt")));
+		Assert.assertEquals(true, cmpPage.emptyPdtPageElementIsDisplayed(new ConfigReader().loadDataProperties().getProperty("noPdt")));
 	}
 
 }

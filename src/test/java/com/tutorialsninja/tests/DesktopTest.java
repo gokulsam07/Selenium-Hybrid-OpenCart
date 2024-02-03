@@ -27,21 +27,21 @@ public class DesktopTest extends BaseTest {
 
 	@Test(priority=1)
 	public void PCTest() {
-		 homePage = catRib.selectDesktop().selectDesktopType(ConfigReader.loadDataProperties().getProperty("typ1")).clickOnContinue();
+		 homePage = catRib.selectDesktop().selectDesktopType(new ConfigReader().loadDataProperties().getProperty("typ1")).clickOnContinue();
 		 Assert.assertEquals(true, homePage.isSliderVisible());
 
 	}
 
 	@Test(priority=2)
 	public void MacTest() {
-		ICommons macProduct = catRib.selectDesktop().selectDesktopType(ConfigReader.loadDataProperties().getProperty("typ2"));
+		ICommons macProduct = catRib.selectDesktop().selectDesktopType(new ConfigReader().loadDataProperties().getProperty("typ2"));
 		Assert.assertEquals(true, macProduct.isProductDisplayed());
 
 	}
 	
 	@Test(priority=3)
 	public void checkIfDesktopPageIsDisplayed() {
-		StorePage allDesktop =(StorePage) catRib.selectDesktop().selectDesktopType(ConfigReader.loadDataProperties().getProperty("allD"));
+		StorePage allDesktop =(StorePage) catRib.selectDesktop().selectDesktopType(new ConfigReader().loadDataProperties().getProperty("allD"));
 		Assert.assertEquals(true, allDesktop.isAllDesktopsDisplayed());
 
 	}

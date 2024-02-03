@@ -29,8 +29,8 @@ public class AccountsTest extends BaseTest {
 		HomePage homePage = new HomePage(getDriver());
 		homePage.ClickOnMyAccount();
 		loginPage = homePage.ClickOnLogin();
-		loginPage.enterUsername(ConfigReader.loadProperties().getProperty("username"));
-		loginPage.enterPassword(ConfigReader.loadProperties().getProperty("password"));
+		loginPage.enterUsername(new ConfigReader().loadProperties().getProperty("username"));
+		loginPage.enterPassword(new ConfigReader().loadProperties().getProperty("password"));
 		accountPage = loginPage.clickLogin();
 	}
 

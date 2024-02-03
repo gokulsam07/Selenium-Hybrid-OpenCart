@@ -12,7 +12,6 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.AfterSuite;
 
 public class BaseTest {
 	protected ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -20,7 +19,7 @@ public class BaseTest {
 
 	@BeforeSuite
 	public void cleanUpResources() {
-		killChromeDriverProcesses();
+		//killChromeDriverProcesses();
 		String screenshotLocation = System.getProperty("user.dir") + File.separator + "target" + File.separator
 				+ "reports" + File.separator + "tests";
 		try {
@@ -30,7 +29,7 @@ public class BaseTest {
 		}
 	}
 
-	@AfterSuite
+	//@AfterSuite
 	public void cleanUpResourcesPostCompletion() {
 		killChromeDriverProcesses();
 	}
@@ -38,7 +37,7 @@ public class BaseTest {
 	@BeforeMethod
 	public void setUp() {
 		drm = new DriverManager();
-		driver.set(drm.setupBrowser(ConfigReader.loadProperties().getProperty("browserName")));
+		driver.set(drm.setupBrowser(new ConfigReader().loadProperties().getProperty("browserName")));
 	}
 
 	@AfterMethod

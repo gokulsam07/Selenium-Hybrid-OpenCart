@@ -6,11 +6,15 @@ import java.util.Properties;
 
 public class ConfigReader {
 	
-	private static Properties prop;
-	private static Properties dataProp;
+	public Properties prop;
+	public Properties dataProp;
+	
+	public ConfigReader() {
+		prop = new Properties();
+		dataProp = new Properties();
+    }
 
-    public static Properties loadProperties() {
-        prop = new Properties();
+    public Properties loadProperties() {
         try {
             File file = new File(System.getProperty("user.dir")+"\\src\\test\\java\\browser\\setup\\config.properties");
             FileInputStream fis = new FileInputStream(file);
@@ -21,8 +25,7 @@ public class ConfigReader {
         return prop;
     }
 
-    public static Properties loadDataProperties() {
-        dataProp = new Properties();
+    public  Properties loadDataProperties() {
         try {
             File file = new File(System.getProperty("user.dir")+"\\src\\test\\java\\testdata\\testdata.properties");
             FileInputStream fis = new FileInputStream(file);
