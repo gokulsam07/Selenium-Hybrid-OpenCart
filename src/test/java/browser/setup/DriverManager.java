@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -15,7 +16,6 @@ import tutorialsninja.utils.Utilities;
 
 public class DriverManager {
 	WebDriver dr;
-	private int portNum;
 
 	public WebDriver setupBrowser(String browserName) {
 		DesiredCapabilities dc = new DesiredCapabilities();
@@ -30,14 +30,11 @@ public class DriverManager {
 		}
 		try {
 			String runMode = new ConfigReader().loadDataProperties().getProperty("run");
-			if (runMode.equals("local")) {
-				portNum = 9515;
-				String exePath = System.getProperty("user.dir") + "\\src\\test\\resources\\chromedriver.exe";
-				runChromeDriverInLocal(exePath);
+			if (runMode.equals("remote")) {
+				dr = new RemoteWebDriver(new URL("http://localhost:4444"), dc);
 			} else {
-				portNum = 4444;
+				dr = new ChromeDriver();
 			}
-			dr = new RemoteWebDriver(new URL("http://localhost:" + portNum), dc);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -47,26 +44,5 @@ public class DriverManager {
 		dr.get(new ConfigReader().loadProperties().getProperty("url"));
 
 		return dr;
-	}
-
-	private void runChromeDriverInLocal(String path) {
-
-		try {
-			if (!checkDriverAvailability()) {
-				Runtime.getRuntime().exec(path);
-			} else {
-				System.err.println("*****************chrome driver is already up and running****************");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private boolean checkDriverAvailability() throws IOException {
-		Process process = Runtime.getRuntime().exec("tasklist");
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
-			return reader.lines().anyMatch(line -> line.contains("chrome.exe"));
-		}
 	}
 }
