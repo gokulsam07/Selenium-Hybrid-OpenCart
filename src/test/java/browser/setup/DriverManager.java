@@ -1,5 +1,8 @@
 package browser.setup;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -47,10 +50,23 @@ public class DriverManager {
 	}
 
 	private void runChromeDriverInLocal(String path) {
+
 		try {
-			Runtime.getRuntime().exec(path);
+			if (!checkDriverAvailability()) {
+				Runtime.getRuntime().exec(path);
+			} else {
+				System.err.println("*****************chrome driver is already up and running****************");
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	private boolean checkDriverAvailability() throws IOException {
+		Process process = Runtime.getRuntime().exec("tasklist");
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+			return reader.lines().anyMatch(line -> line.contains("chrome.exe"));
 		}
 	}
 }
